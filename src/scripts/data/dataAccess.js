@@ -1,6 +1,5 @@
-const apiURL = "http://localhost:8088"
+const apiURL = "http://localhost:3000"
 const applicationElement = document.querySelector(".giffygram")
-
 
 const applicationState = {
     currentUser: {},
@@ -9,16 +8,16 @@ const applicationState = {
         displayFavorites: false,
         displayMessages: false
     },
-    // properties whose value are empty arrays, to send data to the permanent state later.
+    // adding a property whose value is an empty array to send transient data to the API.
     users: [],
     posts: [],
     likes: [],
     messages: []
 }
 
-// fetchUsers for use on the login page so that a user can login with their save email and password.
+// fetchUsers function to fetch state from the API, for use with login page so that the user can login with their email address and password saved in permanent state.
 export const fetchUsers = () => {
-    return fetch(`${apiUrl}/users`)
+    return fetch(`${apiURL}/users`)
         .then(response => response.json())
         .then(
             (login) => {
@@ -27,14 +26,14 @@ export const fetchUsers = () => {
         )
 }
 
-// getUsers to use for interpolation in to the login module.
+// getUsers function to use in string interpolation on login.js page to send the data to that page.
 export const getUsers = () => {
     return applicationState.users.map(user => ({ ...user }))
 }
 
-// fetchPosts
+// fetchPosts same purpose to fetchUsers, except for use in the main Giffy feed.
 export const fetchPosts = () => {
-    return fetch(`${apiUrl}/posts`)
+    return fetch(`${apiURL}/posts`)
         .then(response => response.json())
         .then(
             (feed) => {
@@ -43,20 +42,22 @@ export const fetchPosts = () => {
         )
 }
 
+// getPosts function will be used as an import and interpolated in to the main Giffy feed so that the state can be displayed after retrieval from the API.
 export const getPosts = () => {
     return applicationState.posts.map(post => ({ ...post }))
 }
 
-export const savePosts = (savedPosts) => {
+// savePosts function for use later in the main Giffy feed for the 'create a giffy' button, so that a user can save a post and it will be sent to the API as permanent state.
+export const savePosts = (savePostToFeed) => {
     const fetchOptions = {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(savedPosts)
+        body: JSON.stringify(savePostToFeed)
     }
 
-    return fetch(`${apiUrl}/requests`, fetchOptions)
+    return fetch(`${apiURL}/posts`, fetchOptions)
         .then(response => response.json())
         .then(() => {
             mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
@@ -64,9 +65,9 @@ export const savePosts = (savedPosts) => {
 
 }
 
+// deletePosts function so that a user can delete their own post and update it in the permanent state.
 export const deletePosts = (id) => {
-    return fetch(`${apiUrl}/posts/${id}`, { 
-        method: "DELETE" })
+    return fetch(`${apiURL}/posts/${id}`, { method: "DELETE" })
         .then(
             () => {
                 mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
@@ -74,24 +75,25 @@ export const deletePosts = (id) => {
         )
 }
 
-// fetchLikes
+// fetchLikes 
 export const fetchLikes = () => {
-    return fetch(`${apiUrl}/likes`)
+    return fetch(`${apiURL}/likes`)
         .then(response => response.json())
         .then(
-            (favorites) => {
-                applicationState.likes = favorites
+            (like) => {
+                applicationState.likes = like
             }
         )
 }
 
+// getLikes for import on main Giffy page, string interpolation.
 export const getLikes = () => {
     return applicationState.likes.map(like => ({ ...like }))
 }
 
-// fetchMessages
+// fetchMessages 
 export const fetchMessages = () => {
-    return fetch(`${apiUrl}/messages`)
+    return fetch(`${apiURL}/messages`)
         .then(response => response.json())
         .then(
             (msg) => {
@@ -100,17 +102,17 @@ export const fetchMessages = () => {
         )
 }
 
+// getMessages 
 export const getMessages = () => {
     return applicationState.messages.map(message => ({ ...message }))
 }
 
+// deleteMessages
 export const deleteMessages = (id) => {
-    return fetch(`${apiUrl}/messages/${id}`, { 
-        method: "DELETE" })
+    return fetch(`${apiURL}/messages/${id}`, { method: "DELETE" })
         .then(
             () => {
                 mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
             }
         )
 }
-
