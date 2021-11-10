@@ -4,3 +4,13 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.field {
+display: flex;
+flex-direction: column;
+width: 50%;
+margin-left: 25%;
+margin-right: 25%;
+margin-bottom: .5rem;
+	padding: .5rem;
+}
