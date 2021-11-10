@@ -1,11 +1,11 @@
 import { getUsers, getMessages, saveMessages } from "../data/dataAccess.js";
 
-export const SendMessages = () => {
+export const MessageForm = () => {
     let html = `
         <div class="directMessage">
             <h3>Direct Message</h3>
         <div> 
-            "Recipient: "
+            Recipient: 
         <select name="directMessage_userSelect" class="message__input">
             <option>Choose a recipient...</option>
                 <option value="messageRecipient--1">Taylor Swift</option>
@@ -27,20 +27,20 @@ export const SendMessages = () => {
     return html
 }
 
-const mainContainer = document.querySelector("#container")
+// const mainContainer = document.querySelector("#container")
 
-mainContainer.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "save") {
-        const userMessage = document.querySelector("input[name='message']").value
-        const userDescription = document.querySelector("input[name='']").value
-        const userRecipient = document.querySelector("input[name='directMessage_userSelect']").value
+// mainContainer.addEventListener("click", clickEvent => {
+//     if (clickEvent.target.id === "save") {
+//         const userMessage = document.querySelector("input[name='message']").value
+//         const userDescription = document.querySelector("input[name='']").value
+//         const userRecipient = document.querySelector("input[name='directMessage_userSelect']").value
 
-        const dataToSendToAPI = {
-            userId: userDescription,
-            recipientId: userRecipient,
-            message: userMessage,
-        }
+//         const dataToSendToAPI = {
+//             userId: userDescription,
+//             recipientId: userRecipient,
+//             message: userMessage,
+//         }
 
-        saveMessages(dataToSendToAPI)
-    }
-})
+//         saveMessages(dataToSendToAPI)
+//     }
+// })
