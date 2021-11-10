@@ -111,6 +111,23 @@ export const getMessages = () => {
     return applicationState.messages.map(message => ({ ...message }))
 }
 
+export const saveMessages = (saveMessagesToInbox) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(saveMessagesToInbox)
+    }
+
+    return fetch(`${apiURL}/messages`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+        })
+
+}
+
 // deleteMessages
 export const deleteMessages = (id) => {
     return fetch(`${apiURL}/messages/${id}`, { method: "DELETE" })
@@ -121,9 +138,11 @@ export const deleteMessages = (id) => {
         )
 }
 
+
 applicationElement.addEventListener(
     "stateChanged",
     customEvent => {
         renderApp()
     }
 )
+
