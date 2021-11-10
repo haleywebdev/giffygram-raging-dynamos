@@ -1,5 +1,5 @@
 import { GiffyGram } from "./GiffyGram.js"
-import {LoginForm} from "./auth/Login.js"
+import { LoginForm } from "./auth/Login.js"
 import { fetchUsers } from "./data/dataAccess.js"
 
 const applicationElement = document.querySelector(".giffygram")
