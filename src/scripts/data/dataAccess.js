@@ -60,7 +60,7 @@ export const savePosts = (savePostToFeed) => {
     return fetch(`${apiURL}/posts`, fetchOptions)
         .then(response => response.json())
         .then(() => {
-            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+            applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
         })
 
 }
@@ -70,7 +70,7 @@ export const deletePosts = (id) => {
     return fetch(`${apiURL}/posts/${id}`, { method: "DELETE" })
         .then(
             () => {
-                mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+                applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
             }
         )
 }
@@ -112,7 +112,7 @@ export const deleteMessages = (id) => {
     return fetch(`${apiURL}/messages/${id}`, { method: "DELETE" })
         .then(
             () => {
-                mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+                applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
             }
         )
 }
