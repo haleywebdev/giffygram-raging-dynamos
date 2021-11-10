@@ -1,5 +1,9 @@
+import { renderApp } from "../main.js"
+
 const apiURL = "http://localhost:3000"
 const applicationElement = document.querySelector(".giffygram")
+
+
 
 const applicationState = {
     currentUser: {},
@@ -15,6 +19,10 @@ const applicationState = {
     messages: []
 }
 
+// getUsers function to use in string interpolation on login.js page to send the data to that page.
+export const getUsers = () => {
+    return applicationState.users.map(user => ({ ...user }))
+}
 // fetchUsers function to fetch state from the API, for use with login page so that the user can login with their email address and password saved in permanent state.
 export const fetchUsers = () => {
     return fetch(`${apiURL}/users`)
@@ -26,10 +34,6 @@ export const fetchUsers = () => {
         )
 }
 
-// getUsers function to use in string interpolation on login.js page to send the data to that page.
-export const getUsers = () => {
-    return applicationState.users.map(user => ({ ...user }))
-}
 
 // fetchPosts same purpose to fetchUsers, except for use in the main Giffy feed.
 export const fetchPosts = () => {
@@ -133,3 +137,12 @@ export const deleteMessages = (id) => {
             }
         )
 }
+
+
+applicationElement.addEventListener(
+    "stateChanged",
+    customEvent => {
+        renderApp()
+    }
+)
+
