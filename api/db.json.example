@@ -1,3 +1,67 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": 1,
+      "name": "Taylor Swift",
+      "email": "taylor@swift.com",
+      "password": "taylor"
+    },
+    {
+      "id": 2,
+      "name": "Young Jeezy",
+      "email": "young@jeezy.com",
+      "password": "young"
+    },
+    {
+      "id": 3,
+      "name": "Bob Ross",
+      "email": "bob@ross.com",
+      "password": "bob"
+    },
+    {
+      "id": 4,
+      "name": "Billie Eilish ",
+      "email": "billie@eilish.com",
+      "password": "billie"
+    },
+    {
+      "id": 5,
+      "name": "Travis Scott",
+      "email": "travis@scott.com",
+      "password": "travis"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "My first post",
+      "imageURL": "https://media.giphy.com/media/3oz8xyUoD2HlTIcdTW/giphy.gif",
+      "description": " Something cool I cam across one day",
+      "timestamp": 1508080619498
+    },
+    ],
+  "likes": [
+    {
+      "id": 1,
+      "userId": 1,
+      "postId": 2
+    }
+  ],
+    "messages": [
+    {
+      "userId": 2,
+      "recipientId": 3,
+      "text": "Last one to the house is a rotten egg",
+      "read": false,
+      "id": 1
+    },
+    ],
+  "follows": [
+    {
+      "id": 1,
+      "userId": 1,
+      "followingId": 2
+    }
+  ]
 }
