@@ -1,3 +1,4 @@
+import { PostForm } from "./feed/PostEntry.js"
 import { MessageForm } from "./message/MessageForm.js"
 
 export const GiffyGram = () => {
@@ -5,6 +6,7 @@ export const GiffyGram = () => {
     // Show main main UI
     return `
     <h2> this is a test </h2> 
+    ${PostForm()}
     ${MessageForm()}
     
     //! Function that has the HTML interpolation for the NavBar

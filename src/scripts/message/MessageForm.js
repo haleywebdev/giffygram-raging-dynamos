@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-
-
-
-
-=======
 import { getUsers, getMessages, saveMessages } from "../data/dataAccess.js";
 
 export const MessageForm = () => {
@@ -50,4 +44,3 @@ export const MessageForm = () => {
 //         saveMessages(dataToSendToAPI)
 //     }
 // })
->>>>>>> main
