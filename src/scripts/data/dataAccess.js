@@ -107,6 +107,8 @@ export const fetchMessages = () => {
 }
 
 // getMessages 
+
+
 export const getMessages = () => {
     return applicationState.messages.map(message => ({ ...message }))
 }
