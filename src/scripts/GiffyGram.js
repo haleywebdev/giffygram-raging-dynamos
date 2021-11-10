@@ -3,6 +3,7 @@ import { PostForm } from "./feed/PostEntry.js"
 import { Posts } from "./feed/Post.js"
 import { FilterByDate, PostsFromDropdown, SortByFavorites } from "../footer/Footer.js"
 import { MessageForm } from "./message/MessageForm.js"
+import { Posts } from "./feed/Post.js"
 
 
 export const GiffyGram = () => {
@@ -14,7 +15,7 @@ export const GiffyGram = () => {
     ${PostForm()}
     ${MessageForm()}
     ${Posts()}
-    <footer>
+    <footer> 
     ${FilterByDate()}
     ${PostsFromDropdown()}
     ${SortByFavorites()}

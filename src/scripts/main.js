@@ -8,19 +8,22 @@ const applicationElement = document.querySelector(".giffygram")
 export const renderApp = () => {
     const user = parseInt(localStorage.getItem("gg_user"))
     fetchUsers()
+    
 
     if (user) {
         applicationElement.innerHTML = GiffyGram()
     } else {
-        applicationElement.innerHTML = LoginForm()
-    }
+        applicationElement.innerHTML = LoginForm()}
+        
+        fetchPosts().then(
+            () => {
+                applicationElement.innerHTML = GiffyGram()
+            }
+        )
+    
+    } 
 
-    fetchPosts().then(
-        () => {
-            applicationElement.innerHTML = GiffyGram()
-        }
-    )
-}
+
 
 renderApp()
 
