@@ -1,4 +1,4 @@
-import { getLikes, getUsers } from "../scripts/data/dataAccess.js"
+import { getLikes, getUsers, setDisplayFav } from "../data/dataAccess.js"
 
 
 //! HTML interpolation for the "Posts by" dropdown list. 
@@ -36,7 +36,17 @@ export const PostsFromDropdown = () => {
     return html
 }
 
+document.addEventListener (
+    "click",
+    (clickevt) => {
+        if (clickevt.target.name==="likeDescription") {
+            // when the user clicks the favorites box the displayFavorites transient state should be changed 
+            // invoke setter function and pass a boolean argument 
+            setDisplayFav(true)
+        }
 
+    }
+)
 
 //! HTML interpolation for the favorite selector. 
 export const SortByFavorites = () => {
@@ -44,13 +54,9 @@ export const SortByFavorites = () => {
     let html = ""
     html += `
         <label for="ShowOnlyFavoritesDescription">Show Only Favorites</label>
-        <div class="field">
-        ${likes.map(like => {
-            return `
-                <input type="radio" name="likeDescription" value="${like.id}"></input>
-            `
-        })}
-        </div>
+
+        <input type="checkbox" name="likeDescription" ></input>
+    
     `
         return html
 }

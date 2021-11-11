@@ -1,4 +1,8 @@
-import { savePosts } from "../data/dataAccess.js"
+import { savePosts, setNewPost } from "../data/dataAccess.js"
+
+
+
+
 
 document.addEventListener(
     "click",
@@ -18,6 +22,22 @@ savePosts( gifSavedObj )
         }
     }
 )
+
+export const newPostButton = () => {
+let html = `
+<div>
+<button class="newPostbutton" id="newPostButton"> Share a new gif </button>
+</div>`
+
+return html 
+}
+
+document.addEventListener(
+    "click",
+    (clickEvt) => {
+        if(clickEvt.target.id === "newPostButton"){
+         setNewPost(true) 
+}})
 
 
 export const PostForm = () => {
