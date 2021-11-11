@@ -10,8 +10,10 @@ const applicationState = {
     feed: {
         chosenUser: null,
         displayFavorites: false,
-        displayMessages: false
+        displayMessages: false,
+        newPost: false 
     },
+
     // adding a property whose value is an empty array to send transient data to the API.
     users: [],
     posts: [],
@@ -141,10 +143,21 @@ export const deleteMessages = (id) => {
 }
 
 
-applicationElement.addEventListener(
-    "stateChanged",
-    customEvent => {
-        renderApp()
-    }
-)
 
+export const setNewPost = (button) => {
+    applicationState.feed.newPost= button
+    applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const getNewPost = () => {
+    return applicationState.feed.newPost 
+}
+
+export const setDisplayFav = (button) => {
+    applicationState.feed.displayFavorites= button
+    applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const getDisplayFav = () => {
+    return applicationState.feed.displayFavorites 
+}
