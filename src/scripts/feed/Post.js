@@ -1,14 +1,12 @@
-import { getDisplayFav, getLikes, getPosts } from "../data/dataAccess.js"
-
-
-
-
+import { getDisplayFav, getLikes, getPosts, getUsers } from "../data/dataAccess.js"
 
 export const Posts = () => {
 
     const userWantsToSeeFavorites = getDisplayFav()
     const userLikes = getLikes()
     const postArray = getPosts()
+    const users = getUsers()
+
     if (userWantsToSeeFavorites) {
         //display only favorite post for the user
         const postHTMLArray = postArray.map(
@@ -29,8 +27,30 @@ export const Posts = () => {
     } else {
 
 
-        const postObj = (posts) => {
-            return `<li>${posts.title} <img src="${posts.imageURL}">${posts.description} Posted By: ${posts.id}</li>`
+        const postObj = (post) => {
+            return `
+            <section class="post">
+
+                <h3 class=post__title>${post.title}</h3>
+
+            <img class="post__image" src="${post.imageURL}">
+
+            <div class="post__description">${post.description}</div> 
+
+            <div class="post__tagline">
+                Posted By: 
+                    ${users.map(user => {
+                        if(user.id === post.userId)
+                {
+                    return `${user.name}`
+                }
+            }
+            ).join("")
+        }
+            </div>
+            <div class="post__actions"><div><img id="favoritePost--" class="actionIcon" src="/images/favorite-star-blank.svg"></div>
+            <div><img id="blockPost--" class="actionIcon" src="/images/block.svg"></div></div>
+            </section>`
         }
 
 
@@ -46,20 +66,3 @@ export const Posts = () => {
 
 }
 
-// export const buildPost = ()=> {
-//     const postFeed =getPosts()
-//     let html = `
-//     ${postFeed.map(post => {
-//         `
-//       <li> ${post.title} ${post.imageURL} ${post.description}</li>
-//         `
-//     })}
-
-//     ` 
-//     return html 
-// }
-
-// export const postFeed = ()=> {
-
-
-// }
