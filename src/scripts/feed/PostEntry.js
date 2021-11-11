@@ -11,11 +11,13 @@ document.addEventListener(
             const gifTitle = document.querySelector("#title").value
             const gifURL = document.querySelector("#url").value
             const gifDescription = document.querySelector("#description").value
+            const gifUserId = parseInt(localStorage.getItem("gg_user"))
 
             const gifSavedObj= {
       title: gifTitle,
       imageURL: gifURL,
-      description: gifDescription
+      description: gifDescription,
+      userId: gifUserId
             }
 
 savePosts( gifSavedObj )
