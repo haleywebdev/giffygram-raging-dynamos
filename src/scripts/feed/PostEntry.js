@@ -12,12 +12,14 @@ document.addEventListener(
             const gifURL = document.querySelector("#url").value
             const gifDescription = document.querySelector("#description").value
             const gifUserId = parseInt(localStorage.getItem("gg_user"))
+            const currentDate = now.getTime()
 
             const gifSavedObj= {
       title: gifTitle,
       imageURL: gifURL,
       description: gifDescription,
-      userId: gifUserId
+      userId: gifUserId,
+      timestamp: currentDate
             }
 
 savePosts( gifSavedObj )
@@ -38,7 +40,7 @@ document.addEventListener(
     "click",
     (clickEvt) => {
         if(clickEvt.target.id === "newPostButton"){
-         setNewPost(true) 
+        setNewPost(true) 
 }})
 
 
