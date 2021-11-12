@@ -56,7 +56,7 @@ export const SortByFavorites = () => {
         <label for="ShowOnlyFavoritesDescription">Show Only Favorites</label>
 
         <input type="checkbox" name="likeDescription" ></input>
-    
-    `
+        
+        `
         return html
 }

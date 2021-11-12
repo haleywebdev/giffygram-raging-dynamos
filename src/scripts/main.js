@@ -1,16 +1,16 @@
 import { GiffyGram } from "./GiffyGram.js"
 import { LoginForm } from "./auth/Login.js"
-import { fetchLikes, fetchUsers } from "./data/dataAccess.js"
+import { fetchLikes, fetchUsers, setCurrentUser } from "./data/dataAccess.js"
 import { fetchPosts } from "./data/dataAccess.js"
 
 const applicationElement = document.querySelector(".giffygram")
 
 export const renderApp = () => {
+   
     const user = parseInt(localStorage.getItem("gg_user"))
     fetchUsers()
     .then(()=> fetchLikes())
     .then(()=> {
-        const user = parseInt(localStorage.getItem("gg_user"))
         if (user) {
             fetchPosts().then(
                 () => {
@@ -24,6 +24,7 @@ export const renderApp = () => {
         } 
     )
     
+setCurrentUser (user)
 
     }    
     // const applicationElement = document.querySelector(".giffygram")
