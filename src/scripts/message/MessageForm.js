@@ -1,4 +1,5 @@
-import { getUsers, getNewMessage, saveMessages } from "../data/dataAccess.js";
+import { getUsers, getNewMessage, saveMessages } from "../data/dataAccess.js"
+import { NavBar } from "../nav/NavBar.js"
 
 export const MessageForm = () => {
     const usersObj = getUsers()
@@ -6,6 +7,7 @@ export const MessageForm = () => {
     
 
     let html = ""
+    html += `<div>${NavBar()}</div>`
     html += `
         <div class="directMessage">
             <h3>Direct Message</h3>
