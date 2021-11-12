@@ -12,7 +12,8 @@ const applicationState = {
         displayFavorites: false,
         displayMessages: false,
         newPost: false,
-        datePosted: null 
+        datePosted: null,
+        newMessage: false
     },
 
     // adding a property whose value is an empty array to send transient data to the API.
@@ -111,11 +112,6 @@ export const fetchMessages = () => {
 
 // getMessages 
 
-
-export const getMessages = () => {
-    return applicationState.messages.map(message => ({ ...message }))
-}
-
 export const saveMessages = (saveMessagesToInbox) => {
     const fetchOptions = {
         method: "POST",
@@ -154,6 +150,15 @@ export const getNewPost = () => {
     return applicationState.feed.newPost 
 }
 
+export const getNewMessage = () => {
+    return applicationState.feed.newMessage
+}
+
+export const setNewMessage = (message) => {
+    applicationState.feed.newMessage= message
+    applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
 export const setDisplayFav = (button) => {
     applicationState.feed.displayFavorites= button
     applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
@@ -170,3 +175,4 @@ export const setDatePosted = (time) => {
     applicationState.feed.datePosted= time
     applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
 }
+

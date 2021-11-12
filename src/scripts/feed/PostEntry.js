@@ -29,8 +29,7 @@ savePosts( gifSavedObj )
 
 export const newPostButton = () => {
 let html = `
-<div>
-<button class="newPostbutton" id="newPostButton"> Share a new gif </button>
+<div><div class="miniMode" id="miniMode"><button class="newPostbutton" id="newPostButton"> Share a new gif </button></div>
 </div>`
 
 return html 
