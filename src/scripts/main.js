@@ -8,22 +8,35 @@ const applicationElement = document.querySelector(".giffygram")
 export const renderApp = () => {
     const user = parseInt(localStorage.getItem("gg_user"))
     fetchUsers()
-    .then (()=> fetchLikes())
-    
-
-    if (user) {
-        applicationElement.innerHTML = GiffyGram()
-    } else {
-        applicationElement.innerHTML = LoginForm()}
+    .then(()=> fetchLikes())
+    .then(()=> {
+        const user = parseInt(localStorage.getItem("gg_user"))
+        if (user) {
+            fetchPosts().then(
+                () => {
+                    applicationElement.innerHTML = GiffyGram()
+                }
+            )
+        } else {
+            applicationElement.innerHTML = LoginForm()
+        } 
         
-        fetchPosts().then(
-            () => {
-                applicationElement.innerHTML = GiffyGram()
-            }
-        )
+        } 
+    )
     
-    } 
 
+    }    
+    // const applicationElement = document.querySelector(".giffygram")
+
+    // export const renderApp = () => {
+    //     const user = parseInt(localStorage.getItem("gg_user"))
+    
+    //     if (user) {
+    //         applicationElement.innerHTML = GiffyGram()
+    //     } else {
+    //         applicationElement.innerHTML = LoginForm()
+    //     }
+    // }
 
 
 renderApp()

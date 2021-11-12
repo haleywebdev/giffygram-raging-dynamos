@@ -43,10 +43,12 @@ export const Posts = () => {
                     ${users.map(user => {
                         if(user.id === post.userId)
                 {
+
                     return `${user.name} 
                     <div id ="timestamp">
                     Posted on: ${post.timestamp}
                     </div>`
+
                 }
             }
             ).join("")
