@@ -1,4 +1,3 @@
-import { renderApp } from "../main.js"
 
 const apiURL = "http://localhost:3000"
 const applicationElement = document.querySelector(".giffygram")
@@ -139,10 +138,26 @@ export const deleteMessages = (id) => {
         )
 }
 
+document.addEventListener(
+    "click",
+    (clickEvent) => {
+        if(clickEvent.target.id === "logout"){
+
+            localStorage.clear()
+            applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+        }
+        
+    }
+
+)
 
 
 export const setNewPost = (button) => {
     applicationState.feed.newPost= button
+    applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+}
+export const setCurrentUser = (id) => {
+    applicationState.currentUser.currentUserId= id
     applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
 }
 

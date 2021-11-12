@@ -1,6 +1,7 @@
 import { setNewMessage } from "../data/dataAccess.js"
-import { renderApp } from "../main.js"
 
+
+const applicationElement = document.querySelector(".giffygram")
 
 export const NavBar = () => {
 
@@ -32,12 +33,3 @@ document.addEventListener(
             setNewMessage(true)
 }})
 
-document.addEventListener(
-    "click",
-    (clickEvent) => {
-        if(clickEvent.target.id === "logout")
-        localStorage.removeItem('gg_user')
-        renderApp()
-    }
-
-)

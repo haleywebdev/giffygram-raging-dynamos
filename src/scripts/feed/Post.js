@@ -27,10 +27,15 @@ export const Posts = () => {
         return postHTML
     } else {
 
+        
+        
 
         const postObj = (post) => {
-            return `
-            <section class="post">
+           const getDate = () => {
+               const date = new Date(post.timestamp)
+               return date.toLocaleDateString('en-US')
+           }
+            return `<section class="post">
 
                 <h3 class=post__title>${post.title}</h3>
 
@@ -46,7 +51,7 @@ export const Posts = () => {
 
                     return `${user.name} 
                     <div id ="timestamp">
-                    Posted on: ${post.timestamp}
+                    Posted on: ${getDate()}
                     </div>`
 
                 }

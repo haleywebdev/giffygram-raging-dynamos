@@ -12,7 +12,7 @@ document.addEventListener(
             const gifURL = document.querySelector("#url").value
             const gifDescription = document.querySelector("#description").value
             const gifUserId = parseInt(localStorage.getItem("gg_user"))
-            const timeStamp = document.querySelector("#timestamp")
+            const timeStamp = Date.now()
 
             const gifSavedObj= {
       title: gifTitle,
@@ -40,8 +40,7 @@ document.addEventListener(
     (clickEvt) => {
         if(clickEvt.target.id === "newPostButton"){
          setNewPost(true) 
-         setDatePosted(new Date().toLocaleDateString())
-}})
+        }})
 
 
 export const PostForm = () => {
