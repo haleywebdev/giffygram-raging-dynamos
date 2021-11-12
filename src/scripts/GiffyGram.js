@@ -1,23 +1,25 @@
 
 import { newPostButton, PostForm } from "./feed/PostEntry.js"
+import { NavBar } from "./nav/NavBar.js"
 
 
 import { FilterByDate, PostsFromDropdown, SortByFavorites } from "./footer/Footer.js"
 
 import { MessageForm } from "./message/MessageForm.js"
 import { Posts } from "./feed/Post.js"
-import { getNewPost } from "./data/dataAccess.js"
+import { getNewPost, getNewMessage } from "./data/dataAccess.js"
 
 
 export const GiffyGram = () => {
 
-    // Show main main UI
     return `
-
-    <h2> this is a test </h2> 
+    
+    <header>${getNewMessage() ? MessageForm() : NavBar()}</header>
+<div>
     ${getNewPost() ? PostForm() : newPostButton()}
-    ${MessageForm()}
+
     ${Posts()}
+</div>
     <footer> 
     ${FilterByDate()}
     ${PostsFromDropdown()}
