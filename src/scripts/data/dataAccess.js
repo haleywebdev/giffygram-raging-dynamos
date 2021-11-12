@@ -11,7 +11,8 @@ const applicationState = {
         chosenUser: null,
         displayFavorites: false,
         displayMessages: false,
-        newPost: false 
+        newPost: false,
+        datePosted: null 
     },
 
     // adding a property whose value is an empty array to send transient data to the API.
@@ -160,4 +161,12 @@ export const setDisplayFav = (button) => {
 
 export const getDisplayFav = () => {
     return applicationState.feed.displayFavorites 
+}
+
+export const getDatePosted = () => {
+    return applicationState.feed.datePosted
+}
+export const setDatePosted = (time) => {
+    applicationState.feed.datePosted= time
+    applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
 }

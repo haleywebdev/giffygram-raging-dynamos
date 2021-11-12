@@ -1,4 +1,4 @@
-import { getDisplayFav, getLikes, getPosts, getUsers } from "../data/dataAccess.js"
+import { deletePosts, getDatePosted, getDisplayFav, getLikes, getPosts, getUsers } from "../data/dataAccess.js"
 
 export const Posts = () => {
 
@@ -6,6 +6,7 @@ export const Posts = () => {
     const userLikes = getLikes()
     const postArray = getPosts()
     const users = getUsers()
+    const time = getDatePosted()
 
     if (userWantsToSeeFavorites) {
         //display only favorite post for the user
@@ -42,15 +43,21 @@ export const Posts = () => {
                     ${users.map(user => {
                         if(user.id === post.userId)
                 {
-                    return `${user.name} ${post.timestamp}`
+
+                    return `${user.name} 
+                    <div id ="timestamp">
+                    Posted on: ${post.timestamp}
+                    </div>`
+
                 }
             }
             ).join("")
         }
             </div>
             <div class="post__actions"><div><img id="favoritePost--" class="actionIcon" src="/images/favorite-star-blank.svg"></div>
-            <div><img id="blockPost--" class="actionIcon" src="/images/block.svg"></div></div>
-            </section>`
+            <div><img id="blockPost--${post.id}" class="actionIcon" src="/images/block.svg"></div></div>
+            </section>
+            `
         }
 
 
@@ -65,4 +72,16 @@ export const Posts = () => {
     }
 
 }
+
+const applicationElement = document.querySelector(".giffygram")
+
+applicationElement.addEventListener(
+    "click", 
+    click => {
+        if (click.target.id.startsWith("blockPost--")) {
+            const [,postId] = click.target.id.split("--")
+            deletePosts(parseInt(postId))
+        }
+    }
+)
 

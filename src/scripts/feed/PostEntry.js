@@ -1,4 +1,4 @@
-import { savePosts, setNewPost } from "../data/dataAccess.js"
+import { savePosts, setDatePosted, setNewPost } from "../data/dataAccess.js"
 
 
 
@@ -12,14 +12,14 @@ document.addEventListener(
             const gifURL = document.querySelector("#url").value
             const gifDescription = document.querySelector("#description").value
             const gifUserId = parseInt(localStorage.getItem("gg_user"))
-            const currentDate = now.getTime()
+            const timeStamp = document.querySelector("#timestamp")
 
             const gifSavedObj= {
       title: gifTitle,
       imageURL: gifURL,
       description: gifDescription,
       userId: gifUserId,
-      timestamp: currentDate
+      timestamp: timeStamp
             }
 
 savePosts( gifSavedObj )
@@ -40,7 +40,8 @@ document.addEventListener(
     "click",
     (clickEvt) => {
         if(clickEvt.target.id === "newPostButton"){
-        setNewPost(true) 
+         setNewPost(true) 
+         setDatePosted(new Date().toLocaleDateString())
 }})
 
 
@@ -65,3 +66,5 @@ export const PostForm = () => {
     return html
 
 }
+
+
